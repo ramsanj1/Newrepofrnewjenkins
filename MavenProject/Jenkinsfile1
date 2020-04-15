@@ -1,0 +1,26 @@
+pipeline{
+    agent any
+    tools
+    {
+        maven 'apache-maven-3.3.3'
+        jdk 'JDK'
+    }
+    stages{
+        stage ("build")
+        {
+         steps
+         {
+             echo " build a project."
+             sh "cd MavenProject ; mvn clean install ; pwd"
+         }
+        }
+        stage ("clean up")
+        {
+          steps
+          {
+              echo "cleaninig up workspace"
+               cleanWs()
+          }
+        }
+    }
+}
